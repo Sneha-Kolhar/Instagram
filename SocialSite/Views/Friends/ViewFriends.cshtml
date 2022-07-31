@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SocialSite.Models.Users>
+
+@{
+    ViewBag.Title = "viewFriends";
+}
+
+<h1>@ViewBag.Title</h1>
+
+@if (ViewBag.error != null)
+{
+    <p>@ViewBag.error</p>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailId)
+            </th>
+           
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmailId)
+                </td>
+                <td>
+                    @Html.ActionLink("Remove Friend", "deleteFriendRequest", new { User_Id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
